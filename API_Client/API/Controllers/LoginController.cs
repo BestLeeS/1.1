@@ -34,23 +34,5 @@ namespace API.Controllers
             }
             return res;
         }
-
-        [HttpPost("TokenTest")]
-        [Authorize]
-        public ResponseResult<Sys_User> TokenTest(Sys_User loginInfo)
-        {
-            ResponseResult<Sys_User> res = new ResponseResult<Sys_User>();
-            try
-            {
-                res.Entity = LoginService.Instance.GetToken(loginInfo.LoginName, loginInfo.PassWord);
-                res.Status = ResponseResultStatus.Success;
-            }
-            catch (Exception e)
-            {
-                res.Status = ResponseResultStatus.Error;
-                res.Message = e.Message;
-            }
-            return res;
-        }
     }
 }

@@ -11,5 +11,6 @@ namespace Models.Sys
         public int CurrentPage { get; set; }
         public int Total { get; set; } = 0;
         public string QueryName { get; set; }
+        public Guid InnerCode { get; set; }
     }
 }

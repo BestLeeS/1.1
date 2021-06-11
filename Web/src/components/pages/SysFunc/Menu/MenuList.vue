@@ -101,7 +101,7 @@
                 this.$message.error(res.data.Entity.Message);
               this.loading = false;
             })
-            .catch(res=>{
+            .catch(err=>{
               this.$message.error(err.toString());
               this.loading = false;
             })

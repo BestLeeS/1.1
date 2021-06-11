@@ -13,7 +13,7 @@ using System.Text;
 namespace Service
 {
     public class LoginService
-    {
+    { 
         public static LoginService _instance;
         public static LoginService Instance
         {

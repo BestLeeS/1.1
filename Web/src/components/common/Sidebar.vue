@@ -18,7 +18,7 @@
         router 
         @select="handleSelect"
       >
-        <el-submenu :index="submenu.path" :key="submenu.path" v-for="(submenu,index) in sideBarMenus" >
+        <el-submenu :index="submenu.id" :key="submenu.id" v-for="(submenu,index) in sideBarMenus" >
           <template slot="title">
             <i :class="submenu.meta.icon"></i>
             <span slot="title">{{submenu.meta.title}}</span>
