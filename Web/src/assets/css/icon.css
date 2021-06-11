@@ -1,0 +1,4 @@
+
+    [class*="glyphicon-"], [class^=glyphicon-] {
+        font-family: lx-iconfont!important;
+    }

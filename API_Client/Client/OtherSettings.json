@@ -1,0 +1,7 @@
+[
+  {
+    "Key": "AutoUpdateUrl",//自动升级地址
+    "Value": "http://192.168.0.72:5000/AutoUpdate/eKeyClient_BY/AutoUpdate.xml"
+  }
+]
+

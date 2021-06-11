@@ -1,0 +1,31 @@
+[
+	{
+		"childrenNodes": [
+			{
+				"childrenNodes": [
+					{
+						"childrenNodes": [],
+						"levelName": null,
+						"parentName": null,
+						"funcCode": "1101",
+						"parentCode": "011",
+						"level": 2,
+						"funcName": "个检订单",
+						"url": "/dd/ddorder",
+						"icon": "el-icon-edit-outline",
+						"orderNum": 16
+					}
+				],
+				"levelName": null,
+				"parentName": null,
+				"funcCode": "011",
+				"parentCode": "001",
+				"level": 1,
+				"funcName": "个检订单管理",
+				"url": "dd1",
+				"icon": "el-icon-edit-outline",
+				"orderNum": 15
+			}
+		]
+	}
+]

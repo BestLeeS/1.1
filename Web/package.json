@@ -1,0 +1,48 @@
+{
+  "name": "vue-manage-system",
+  "version": "4.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run serve",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --mode=production"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-vue-jsx": "^3.7.0",
+    "babel-polyfill": "^6.26.0",
+    "bignumber.js": "^9.0.1",
+    "echarts": "^5.0.2",
+    "el-table-infinite-scroll": "^1.0.10",
+    "element-ui": "^2.15.1",
+    "jquery": "^3.6.0",
+    "js-cookie": "^2.2.1",
+    "less": "^4.1.1",
+    "less-loader": "^8.0.0",
+    "localforage": "^1.9.0",
+    "lodash": "^4.17.21",
+    "mockjs": "^1.1.0",
+    "moment": "^2.29.1",
+    "node-sass": "^4.14.1",
+    "nprogress": "^0.2.0",
+    "pdfobject": "^2.2.4",
+    "pinyin-match": "^1.2.1",
+    "pl-table": "^2.7.5",
+    "saa": "^1.0.0",
+    "vue": "^2.5.21",
+    "vue-cropperjs": "^5.0.0",
+    "vue-loader": "^15.9.6",
+    "vue-quill-editor": "^3.0.6",
+    "vue-router": "^3.0.1",
+    "vue-template-compiler": "^2.5.21",
+    "vuedraggable": "^2.24.3",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.2.0",
+    "@vue/cli-service": "^3.8.4",
+    "sass-loader": "^9.0.2"
+  }
+}
