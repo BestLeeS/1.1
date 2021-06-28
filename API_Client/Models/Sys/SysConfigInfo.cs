@@ -10,5 +10,7 @@ namespace Models.Sys
         public static string Issuer { get; set; }
         public static string Audience { get; set; }
         public static string DBConnectionString { get; set; }
+        public static string UploadFilePath { get; set; }
+        
     }
 }

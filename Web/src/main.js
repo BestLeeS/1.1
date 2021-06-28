@@ -16,6 +16,8 @@ import './assets/css/icon.css';
 import './assets/css/WebSite.css';
 import './assets/css/iconfont.css';
 import 'nprogress/nprogress.css'
+import less from 'less'
+Vue.use(less)
 
 Vue.config.devtools = true
 Vue.config.productionTip = false

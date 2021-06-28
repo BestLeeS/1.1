@@ -3,7 +3,7 @@
       <div class="view-top">
         <el-input v-model="SearchParams.Querytxt" placeholder="菜单名称" size="mini" clearable></el-input>
         <el-button type="primary" size="mini" @click="GetData">查询</el-button>
-        <el-button type="primary" size="mini" @click="">新建</el-button>
+        <el-button type="primary" size="mini" @click="New">新建</el-button>
         <el-button type="primary" size="mini" @click="">删除</el-button>
       </div>
       <div class="view-main">
@@ -21,8 +21,40 @@
           <el-table-column prop="PhoneNum" label="手机号">
           </el-table-column>
           <el-table-column prop="Photo" label="照片">
+            <template slot-scope="scope">
+              <el-popover
+                placement="top-start"
+                width="80"
+                trigger="hover"
+                v-if="scope.row.Photo"
+              >
+                <el-image 
+                  style="width: 100px; height: 100px"
+                  :src="scope.row.Photo" 
+                  :preview-src-list="[scope.row.Photo]"
+                >
+                </el-image>
+                <i slot="reference" class="el-icon-picture-outline"></i>
+              </el-popover>
+            </template>
           </el-table-column>
           <el-table-column prop="Signature" label="签名">
+            <template slot-scope="scope">
+              <el-popover
+                placement="top-start"
+                width="80"
+                trigger="hover"
+                v-if="scope.row.Signature"
+              >
+                <el-image 
+                  style="width: 100px; height: 100px"
+                  :src="scope.row.Signature" 
+                  :preview-src-list="[scope.row.Signature]"
+                >
+                </el-image>
+                <i slot="reference" class="el-icon-picture"></i>
+              </el-popover>
+            </template>
           </el-table-column>
           <el-table-column prop="Remark" label="备注">
           </el-table-column>
@@ -86,6 +118,10 @@
           this.Params.InnerCode = UserID;
           this.Params.Visible = true;
         },
+        New(){
+          this.Params.InnerCode = this.$EmptyGuid;
+          this.Params.Visible = true;
+        },
         GetData(){
           this.loading = true;
           this.$axios
@@ -103,9 +139,6 @@
             this.$message.error(err.toString());
             this.loading = false;
           })
-        },
-        New(){
-
         },
         HandleSelectChange(val){
           this.multipleSelection = val;

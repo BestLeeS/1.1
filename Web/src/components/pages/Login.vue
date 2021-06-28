@@ -45,8 +45,8 @@
         checked: true,
         isLogin: false,
         ruleForm: {
-          LoginId: "",
-          Pwd: ""
+          LoginId: "admin",
+          Pwd: "1"
         },
         msgStyle: { opacity: 1, display: "none" },
         isSuccess: true,
@@ -76,6 +76,7 @@
       submitForm() {
         this.$refs.ruleForm.validate(validate=>{
           if(validate){
+            this.isLogin = true;
             this.$axios
             .post('api/Login/GetToken',{loginName:this.ruleForm.LoginId,passWord:this.ruleForm.Pwd})
             .then(res=>{
@@ -91,8 +92,10 @@
               else{
                 this.$message.error(res.data.Message);
               }
+              this.isLogin = false;
             })
             .catch(err=>{
+              this.isLogin = false;
               this.$message.error(err.toString());
             })
           }

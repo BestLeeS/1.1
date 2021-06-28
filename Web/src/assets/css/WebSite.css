@@ -242,3 +242,15 @@ body {
 		padding: 0 10px;
 	}
 }
+
+/* elementUI 样式整体修改,慎用 */
+.el-image-viewer__close{
+	color:red !important;
+	background-color:white !important;
+}
+.el-dialog__body{
+	padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}

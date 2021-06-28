@@ -8,6 +8,7 @@ namespace Models
 {
     public class Sys_User
     {
+        [SugarColumn(IsPrimaryKey = true)]
         public Guid UserID { get; set; }
         public string UserName { get; set; }
         public string LoginName { get; set; }
@@ -18,6 +19,7 @@ namespace Models
         public string Signature { get; set; }
         public Guid RoleCode { get; set; }
         public string Token { get; set; }
+        public string Remark { get; set; }
         [SugarColumn(IsIgnore = true)]
         public List<DIC_Menu> Menus { get; set; }
     }

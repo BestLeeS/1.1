@@ -122,6 +122,7 @@ namespace API
             SysConfigInfo.Issuer = Configuration.GetValue<string>("Token:Issuer");
             SysConfigInfo.Audience = Configuration.GetValue<string>("Token:Audience");
             SysConfigInfo.DBConnectionString = Encrypt.DESDecrypt(Configuration.GetValue<string>("DBConnectionString"));
+            SysConfigInfo.UploadFilePath = AppDomain.CurrentDomain.BaseDirectory + Configuration.GetValue<string>("SysConfig:UploadFilePath");
         }
     }
 }
