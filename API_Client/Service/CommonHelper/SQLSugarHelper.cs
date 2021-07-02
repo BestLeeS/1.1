@@ -21,7 +21,7 @@ namespace Service.CommonHelper
             {
                 ConnectionString = SysConfigInfo.DBConnectionString,//连接符字串
                 DbType = DbType.SqlServer,
-                IsAutoCloseConnection = true,
+                IsAutoCloseConnection = false,
                 InitKeyType = InitKeyType.Attribute //从实体特性中读取主键自增列信息
             }); ;
         }

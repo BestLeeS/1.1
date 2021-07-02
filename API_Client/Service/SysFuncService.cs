@@ -5,6 +5,7 @@ using Service.CommonHelper;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Service
@@ -46,8 +47,52 @@ namespace Service
             }).OrderBy("t1.parentID,t1.orderNum asc").ToPageList(searchParams.PageIndex,searchParams.PageSize,ref totalCount);
  
             PaginatedList<DIC_Menu> result = new PaginatedList<DIC_Menu>(list, totalCount, searchParams.PageIndex, searchParams.PageSize);
+
             return result;
             
+        }
+
+        public List<DIC_Menu> GetMenuListInitChildren()
+        {
+
+            var tmpList = SugarHelper.DB.Queryable<DIC_Menu, DIC_Menu>((t1, t2) => new JoinQueryInfos(JoinType.Left, t1.parentID == t2.id));
+
+            var list = tmpList.Select((t1, t2) => new DIC_Menu
+            {
+                id = t1.id,
+                index = t1.index,
+                name = t1.name,
+                path = t1.path,
+                componentpath = t1.componentpath,
+                redirect = t1.redirect,
+                parentID = t1.parentID,
+                parentName = t2.title,
+                title = t1.title,
+                icon = t1.icon,
+                orderNum = t1.orderNum,
+                Enable = t1.Enable
+            }).OrderBy("t1.parentID,t1.orderNum asc").ToList();
+
+            List<DIC_Menu> resMenus  = list.FindAll(z => z.parentID == Guid.Empty).OrderBy(z => z.orderNum).ToList();
+            List<DIC_Menu> childMenus = list.FindAll(z => z.parentID != Guid.Empty).OrderBy(z => z.orderNum).ToList();
+            childMenus.ForEach(x => {
+                var tmpResMenus = resMenus.Find(z => z.id == x.parentID);
+                x.meta.title = x.title;
+                x.meta.icon = x.icon;
+                if (tmpResMenus != null)
+                    x.parentName = tmpResMenus.name;
+            });
+            resMenus.ForEach(x => {
+                x.meta.title = x.title;
+                x.meta.icon = x.icon;
+                x.children = childMenus.FindAll(z => z.parentID == x.id);
+            });
+            return resMenus;
+        }
+
+        public List<Guid> GetUserPromissionIDs(Guid userID)
+        {
+            return SugarHelper.DB.Queryable<User_Promission>().Where(x => x.UserID == userID).Select(x=>x.MenuID).ToList();
         }
 
         public DIC_Menu GetMenuByInnerCode(ReqSysFunc reqSysFunc)

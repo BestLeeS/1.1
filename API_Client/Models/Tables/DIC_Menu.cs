@@ -17,6 +17,7 @@ namespace Models
 		public string path { get; set; }
 		[SugarColumn(ColumnName = "Componentpath")]
 		public string componentpath { get; set; }
+		[SugarColumn(IsIgnore = true)]
 		public string component { get; set; }
 		[SugarColumn(ColumnName = "Redirect")]
 		public string redirect { get; set; }

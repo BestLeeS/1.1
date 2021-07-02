@@ -36,6 +36,49 @@ namespace API.Controllers
             }
             return res;
         }
+        /// <summary>
+        /// 获取格式化菜单
+        /// </summary>
+        /// <param name="requset"></param>
+        /// <returns></returns>
+        [HttpPost("GetMenuListInitChildren")]
+        public ResponseResult<List<DIC_Menu>> GetMenuListInitChildren()
+        {
+            ResponseResult<List<DIC_Menu>> res = new ResponseResult<List<DIC_Menu>>();
+            try
+            {
+                res.Entity = SysFuncService.Instance.GetMenuListInitChildren();
+                res.Status = ResponseResultStatus.Success;
+            }
+            catch (Exception e)
+            {
+                res.Status = ResponseResultStatus.Error;
+                res.Message = e.Message;
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// 获取格式化菜单
+        /// </summary>
+        /// <param name="requset"></param>
+        /// <returns></returns>
+        [HttpGet("GetUserPromissionIDs")]
+        public ResponseResult<List<Guid>> GetUserPromissionIDs(Guid userID)
+        {
+            ResponseResult<List<Guid>> res = new ResponseResult<List<Guid>>();
+            try
+            {
+                res.Entity = SysFuncService.Instance.GetUserPromissionIDs(userID);
+                res.Status = ResponseResultStatus.Success;
+            }
+            catch (Exception e)
+            {
+                res.Status = ResponseResultStatus.Error;
+                res.Message = e.Message;
+            }
+            return res;
+        }
 
         /// <summary>
         /// 
