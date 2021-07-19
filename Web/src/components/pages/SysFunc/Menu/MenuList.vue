@@ -24,8 +24,6 @@
         </el-table-column>
         <el-table-column prop="parentName" label="父级菜单名称">
         </el-table-column>
-        <el-table-column prop="orderNum" label="排序">
-        </el-table-column>
         <el-table-column prop="Enable" label="启用">
           <template slot-scope="scope">
             {{scope.row.Enable?"√":"×"}}

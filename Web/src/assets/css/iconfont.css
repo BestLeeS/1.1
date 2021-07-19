@@ -13,6 +13,22 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+}
+.sidebar-el-menu .iconfont{
+  margin-right: 8px;
+  margin-left: 5px;
+}
+.el-menu-item .iconfont{
+  margin-right: 8px;
+  margin-left: 5px;
+}
+.iconfont-icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
 }
 
 .iconjianqu:before {

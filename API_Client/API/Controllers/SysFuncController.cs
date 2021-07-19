@@ -4,8 +4,10 @@ using Models;
 using Models.Sys;
 using Models.SysFunc;
 using Service;
+using Service.CommonHelper;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace API.Controllers
 {
@@ -147,6 +149,30 @@ namespace API.Controllers
             {
                 res.Status = ResponseResultStatus.Error;
                 res.Message = e.Message;
+            }
+            return res;
+        }
+
+        [Authorize]
+        [HttpGet("DownloadFile")]
+        public ResponseResult<FileContentResult> DownloadFile(string filePath)
+        {
+            filePath = Encrypt.DESDecrypt(filePath);
+            ResponseResult<FileContentResult> res = new ResponseResult<FileContentResult>();
+            try
+            {
+                using var sw = new FileStream(filePath, FileMode.Open);
+                var contenttype = FileHelper.GetContentTypeForFileName(filePath);
+                var bytes = new byte[sw.Length];
+                sw.Read(bytes, 0, bytes.Length);
+                sw.Close();
+                res.Status = ResponseResultStatus.Success;
+                res.Entity = new FileContentResult(bytes, contenttype);
+            }
+            catch (Exception e)
+            {
+                res.Status = ResponseResultStatus.Error;
+                res.Message = $"文件加载失败,{e.Message}";
             }
             return res;
         }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -27,6 +28,7 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             SetSysConfigInfo();
+            WebSocketHelper.StartWsServer();
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("API", new OpenApiInfo { Title = "API Demo", Version = "v1" });
@@ -81,6 +83,7 @@ namespace API
             });
 
             services.AddControllers();
+            services.AddDirectoryBrowser();
 
         }
 
@@ -96,8 +99,7 @@ namespace API
 
             app.UseRouting();
             app.UseStaticFiles();
-
-
+  
             //1.先开启认证
             app.UseAuthentication();
             //2.再开启授权
@@ -113,7 +115,6 @@ namespace API
             {
                 c.SwaggerEndpoint("/swagger/API/swagger.json", "API Demo v1");
             });
-
         }
 
         public void SetSysConfigInfo()
@@ -123,6 +124,9 @@ namespace API
             SysConfigInfo.Audience = Configuration.GetValue<string>("Token:Audience");
             SysConfigInfo.DBConnectionString = Encrypt.DESDecrypt(Configuration.GetValue<string>("DBConnectionString"));
             SysConfigInfo.UploadFilePath = AppDomain.CurrentDomain.BaseDirectory + Configuration.GetValue<string>("SysConfig:UploadFilePath");
+            SysConfigInfo.UploadVoiceFilepath = AppDomain.CurrentDomain.BaseDirectory + Configuration.GetValue<string>("SysConfig:UploadVoiceFilepath");
+            SysConfigInfo.APIaddress = Configuration.GetValue<string>("APIaddress");
+            SysConfigInfo.WebSocketAddress = Configuration.GetValue<string>("WebSocketAddress");
         }
     }
 }

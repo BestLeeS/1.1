@@ -78,7 +78,7 @@ function filterAsyncRouter(RouterMap) {
   let TmpRouterMap = _.cloneDeep(RouterMap);
   TmpRouterMap.forEach(route => {
     if (route.componentpath) {
-      if (route.componentpath === 'Layout') {
+      if (route.componentpath.toLowerCase() === 'layout') {
         route.component = Layout
       } else {
         if (route.componentpath && route.componentpath != "")

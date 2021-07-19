@@ -36,6 +36,8 @@ namespace Models
 		
 		public bool Enable { get; set; }
 		[SugarColumn(IsIgnore = true)]
+		public Guid GroupID { get; set; }
+		[SugarColumn(IsIgnore = true)]
 		public List<DIC_Menu> children { get; set; }
 	}
 

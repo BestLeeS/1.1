@@ -82,6 +82,7 @@
             .then(res=>{
               if(res.data.Status == 1){
                 window.Token = res.data.Entity.Token;
+                window.UserID = res.data.Entity.UserID;
                 this.$message.success("登录成功!");
                 promission.LoadMenus(res.data.Entity.Menus,true);
                 setTimeout(() => {

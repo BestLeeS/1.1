@@ -62,6 +62,9 @@ namespace Client
             CefSettings Settings = new CefSettings();
             Settings.Locale = "zh-CN";
             Settings.CachePath = Directory.GetCurrentDirectory() + @"\Cache";
+            Settings.CefCommandLineArgs.Add("enable-media-stream", "1");  //开启摄像头
+            Settings.CefCommandLineArgs.Add("enable-system-flash", "1");  //flash
+            Settings.CefCommandLineArgs.Add("enable-speech-input", "1");  //语音输入
             Cef.Initialize(Settings);
             webBrowser = new ChromiumWebBrowser(Root) { Dock = DockStyle.Fill };
 

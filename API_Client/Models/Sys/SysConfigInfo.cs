@@ -11,6 +11,8 @@ namespace Models.Sys
         public static string Audience { get; set; }
         public static string DBConnectionString { get; set; }
         public static string UploadFilePath { get; set; }
-        
+        public static string UploadVoiceFilepath { get; set; }
+        public static string APIaddress { get; set; }
+        public static string WebSocketAddress { get; set; }
     }
 }

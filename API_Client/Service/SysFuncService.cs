@@ -43,8 +43,9 @@ namespace Service
                 title = t1.title,
                 icon = t1.icon,
                 orderNum = t1.orderNum,
-                Enable = t1.Enable
-            }).OrderBy("t1.parentID,t1.orderNum asc").ToPageList(searchParams.PageIndex,searchParams.PageSize,ref totalCount);
+                Enable = t1.Enable,
+                GroupID = t1.parentID == Guid.Empty ? t1.id : t1.parentID
+            }).ToPageList(searchParams.PageIndex,searchParams.PageSize,ref totalCount).OrderBy(x=>x.GroupID).ThenBy(x=>x.orderNum).ToList();
  
             PaginatedList<DIC_Menu> result = new PaginatedList<DIC_Menu>(list, totalCount, searchParams.PageIndex, searchParams.PageSize);
 
@@ -126,10 +127,10 @@ namespace Service
                 icon = dIC_Menu.Icon,
                 index = dIC_Menu.MenuName,
                 name = dIC_Menu.MenuName,
-                path = string.IsNullOrEmpty(dIC_Menu.ComponentPath)|| dIC_Menu.ComponentPath == "Layout" ? "/" : dIC_Menu.MenuName,
-                componentpath = string.IsNullOrEmpty(dIC_Menu.ComponentPath) ? "Layout" : dIC_Menu.ComponentPath,
+                path = string.IsNullOrEmpty(dIC_Menu.ComponentPath)|| dIC_Menu.ComponentPath.ToUpper() == "LAYOUT" ? "/" : dIC_Menu.MenuName,
+                componentpath = string.IsNullOrEmpty(dIC_Menu.ComponentPath) ? "LAYOUT" : dIC_Menu.ComponentPath,
                 redirect = dIC_Menu.Redirect,
-                parentID = dIC_Menu.ParentID.HasValue?dIC_Menu.ParentID.Value:Guid.Empty,
+                parentID = dIC_Menu.ParentID ?? Guid.Empty,
                 orderNum = dIC_Menu.OrderNum,
                 Enable = dIC_Menu.Enable
             };
@@ -148,6 +149,5 @@ namespace Service
         {
             SugarHelper.DB.Deleteable<DIC_Menu>().Where(z => innerCodes.Contains(z.id)).ExecuteCommand();
         }
-
     }
 }

@@ -12,11 +12,11 @@ let isConnect = false;
 let rec = null;
 let errCount = 0;
 let WebSocketConnect = ((onmessageCallBack) => {
-	let baseURL = 'localhost:7417';
+	let baseURL = '127.0.0.1:8883';
 	if (process.env.NODE_ENV === 'production') {
 		baseURL = window.g.ProDuctWSURL;
 	}
-	Ws = new WebSocket(`ws://${baseURL}/socket/Connect?UserID=` + window.USERINFO.operatorCode);
+	Ws = new WebSocket(`ws://${baseURL}?UserID=` + window.UserID);
 	Ws.onopen = function () {
 		console.log('与消息中心建立连接!');
 		//连接建立后修改标识
@@ -48,8 +48,8 @@ let heartCheck = {
 	start: function () {
 		this.timeoutObj = setTimeout(function () {
 			if (isConnect) Ws.send(JSON.stringify({
-				SenderId: window.USERINFO.operatorCode,
-				ReceiverId: window.USERINFO.operatorCode,
+				SenderId: window.UserID,
+				ReceiverId: window.UserID,
 				MessageType: "Text",
 				Content: JSON.stringify({
 					NotReadMsgCount: -1,
@@ -97,7 +97,7 @@ export default {
 		let tempSendArry = [];
 		SendArry.forEach(x => {
 			tempSendArry.push({
-				SenderId: window.USERINFO.operatorCode,
+				SenderId: window.UserID,
 				ReceiverId: x.Reciver,
 				Content: JSON.stringify({
 					msgID: x.InnerCode,
@@ -124,7 +124,7 @@ export default {
 			axios
 				.get('/api/XT/SetXtMsgRead', {
 					params: {
-						UserID: window.USERINFO.operatorCode,
+						UserID: window.UserID,
 						MsgID: msgIDArry
 					}
 				})
@@ -146,7 +146,7 @@ export default {
 			axios
 				.get('/api/XT/GetXtMsg', {
 					params: {
-						UserID: window.USERINFO.operatorCode,
+						UserID: window.UserID,
 						lastTime: lastTime
 					}
 				})

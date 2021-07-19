@@ -10,6 +10,9 @@ import utils from './utils/utils';
 import 'less';
 import plTable from 'pl-table'
 
+//iconfont
+import './assets/css/iconfont/iconfont.css'
+import iconfont from './assets/css/iconfont/iconfont.js'
 //CSS
 import 'element-ui/lib/theme-chalk/index.css'; // 默认主题
 import './assets/css/icon.css';
@@ -24,6 +27,7 @@ Vue.config.productionTip = false
 Vue.use(ElementUI);
 Vue.use(utils);
 Vue.use(plTable);
+Vue.use(iconfont);
 new Vue({
 	router,
 	store,

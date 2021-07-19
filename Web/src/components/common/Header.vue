@@ -3,6 +3,7 @@
     <div style="width: 50%;"></div>
     <div style="width: 50%;text-align: right;">
       <el-button size="mini" style="background: none;color: #fff;">配置打印机</el-button>
+      <SysMsg></SysMsg>
     </div>
   </div>
 </template>
