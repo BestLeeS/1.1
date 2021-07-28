@@ -16,7 +16,7 @@
     "bignumber.js": "^9.0.1",
     "echarts": "^5.0.2",
     "el-table-infinite-scroll": "^1.0.10",
-    "element-ui": "^2.15.2",
+    "element-ui": "^2.15.3",
     "hls.js": "^1.0.7",
     "jquery": "^3.6.0",
     "js-audio-recorder": "^1.0.7",
@@ -41,6 +41,7 @@
     "vue-router": "^3.0.1",
     "vue-slicksort": "^1.2.0",
     "vue-template-compiler": "^2.5.21",
+    "vue-uuid": "^2.0.2",
     "vuedraggable": "^2.24.3",
     "vuex": "^3.6.2"
   },

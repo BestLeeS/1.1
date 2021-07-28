@@ -82,7 +82,7 @@
         this.sideBarMenus = JSON.parse(MenusStr).filter(x=>x.path !== "/login");
         let TWidth = window.innerWidth;
         if (TWidth < 1200) {
-          this.changeCollapse(true);
+          //this.changeCollapse(true);
         }
       }
     },

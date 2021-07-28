@@ -59,20 +59,9 @@
     },
     mounted() {
       this.$message.close();
-      this.getCookie();
       document.querySelector(".username input").focus();
     },
     methods: {
-      msgShow_Hide() {
-        this.msgStyle.display = "inline-flex";
-        this.msgStyle.opacity = 1;
-        let timeMS = 1500;
-        for (let index = 0; index < timeMS; index++) {
-          setTimeout(() => {
-            this.msgStyle.opacity = 1 - (1 / timeMS) * index;
-          }, 1);
-        }
-      },
       submitForm() {
         this.$refs.ruleForm.validate(validate=>{
           if(validate){
@@ -81,8 +70,9 @@
             .post('api/Login/GetToken',{loginName:this.ruleForm.LoginId,passWord:this.ruleForm.Pwd})
             .then(res=>{
               if(res.data.Status == 1){
-                window.Token = res.data.Entity.Token;
-                window.UserID = res.data.Entity.UserID;
+                window.UserInfo.Token = res.data.Entity.Token;
+                window.UserInfo.UserID = res.data.Entity.UserID;
+                window.UserInfo.UserName = res.data.Entity.UserName;
                 this.$message.success("登录成功!");
                 promission.LoadMenus(res.data.Entity.Menus,true);
                 setTimeout(() => {
@@ -101,27 +91,10 @@
             })
           }
         });
-      },
-      //设置cookie
-      setCookie(c_name, c_pwd, exdays) { },
-      getCookie: function () { },
-      clearCookie() {
-        this.setCookie("", "", -1);
       }
     },
     created() {
-      document.onkeydown = function (e) {
-          var ev = window.event || e;
-          var code = ev.keyCode || ev.which;
-          if (code == 116) {
-              if(ev.preventDefault) {
-                  ev.preventDefault();
-              } else {
-                  ev.keyCode = 0;
-                  ev.returnValue = false;
-              }
-          }
-      }
+      window.UserInfo = {};
     }
   };
 </script>

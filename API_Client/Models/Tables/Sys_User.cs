@@ -22,5 +22,7 @@ namespace Models
         public string Remark { get; set; }
         [SugarColumn(IsIgnore = true)]
         public List<DIC_Menu> Menus { get; set; }
+        [SugarColumn(IsIgnore = true)]
+        public bool IsOnline { get; set; } = false;
     }
 }

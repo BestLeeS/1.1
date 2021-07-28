@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "7015518",
+      "name": "在线用户",
+      "font_class": "zaixianyonghu",
+      "unicode": "e666",
+      "unicode_decimal": 58982
+    },
+    {
+      "icon_id": "22770821",
+      "name": "离线-线",
+      "font_class": "lixian-xian",
+      "unicode": "e734",
+      "unicode_decimal": 59188
+    },
+    {
+      "icon_id": "22770902",
+      "name": "在线",
+      "font_class": "zaixian",
+      "unicode": "e742",
+      "unicode_decimal": 59202
+    },
+    {
       "icon_id": "9520035",
       "name": "清空",
       "font_class": "qingkongbeifen",

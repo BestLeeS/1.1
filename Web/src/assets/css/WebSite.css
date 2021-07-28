@@ -193,6 +193,7 @@ body {
 .copyright.sideMini .right {
 	display: none;
 }
+
 .sidebar {
 	position: relative;
 }
@@ -204,40 +205,101 @@ body {
 /* 左侧导航 end */
 
 /* 功能页面样式 */
-.view{
+.view {
 	width: calc(100% - 10px);
 	height: calc(100% - 40px);
 	overflow: auto;
 	padding: 3px;
 }
-.view .iconfont{
-	font-size:10px;
+
+.view .iconfont {
+	font-size: 10px;
 	margin-right: 5px;
 }
-.view-top{
+
+.view-top {
 	width: 100%;
 	height: 30px;
 	border-bottom: 1px solid #8CC5FF;
 }
-.view-main{
+
+.view-main {
 	width: 100%;
 	height: calc(100% - 68px);
 	overflow: auto;
 	border-bottom: 1px solid #8CC5FF;
 }
-.view-top .el-input{
+
+.view-top .el-input {
 	width: 120px;
 	margin-right: 10px;
 }
-.view-bottom{
+
+.view-bottom {
 	height: 32px;
 	padding-top: 3px;
 	float: right;
 }
-.view-main .el-table{
+
+.view-main .el-table {
 	width: 100%;
 }
 
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+	width: 7px;
+	height: 7px;
+	background-color: #F5F5F5;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, .1);
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .1);
+	background-color: #c8c8c8;
+}
+
+/*呼吸特效DIV*/
+.DivBreathe {
+	border-radius: 5px;
+	color: black;
+	font-size: 15px;
+	padding: 5px 0 5px 0;
+	text-align: center;
+	cursor: pointer;
+	box-shadow: 1px rgba(0, 0, 0, .3);
+	overflow: hidden;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(LightCyan), to(PaleTurquoise));
+	-webkit-animation-timing-function: ease-in-out;
+	-webkit-animation-name: breathe;
+	-webkit-animation-duration: 900ms;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+}
+
+@-webkit-keyframes breathe {
+	0% {
+		opacity: .5;
+		box-shadow: 0 1px 2px rgba(255, 255, 255, 0.1);
+		background-color: rgba(255, 255, 255, 0.1) !important;
+	}
+
+	100% {
+		opacity: 1;
+		box-shadow: 30px 1px 30px rgba(59, 255, 255, 1);
+		background-color: rgba(59, 255, 255, 1) !important;
+	}
+}
 
 /* 媒体查询 */
 
@@ -248,13 +310,14 @@ body {
 }
 
 /* elementUI 样式整体修改,慎用 */
-.el-image-viewer__close{
-	color:red !important;
-	background-color:white !important;
+.el-image-viewer__close {
+	color: red !important;
+	background-color: white !important;
 }
-.el-dialog__body{
+
+.el-dialog__body {
 	padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
 }

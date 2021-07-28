@@ -16,7 +16,7 @@ let WebSocketConnect = ((onmessageCallBack) => {
 	if (process.env.NODE_ENV === 'production') {
 		baseURL = window.g.ProDuctWSURL;
 	}
-	Ws = new WebSocket(`ws://${baseURL}?UserID=` + window.UserID);
+	Ws = new WebSocket(`ws://${baseURL}?UserID=${window.UserInfo.UserID}&UserName=${window.UserInfo.UserName}`);
 	Ws.onopen = function () {
 		console.log('与消息中心建立连接!');
 		//连接建立后修改标识
@@ -48,13 +48,12 @@ let heartCheck = {
 	start: function () {
 		this.timeoutObj = setTimeout(function () {
 			if (isConnect) Ws.send(JSON.stringify({
-				SenderId: window.UserID,
-				ReceiverId: window.UserID,
-				MessageType: "Text",
-				Content: JSON.stringify({
-					NotReadMsgCount: -1,
-					Flag: "heartCheck"
-				})
+				SenderId: window.UserInfo.UserID,
+				ReceiverId: window.UserInfo.UserID,
+				msgContentObjs: [{
+					type: -1,
+					needRead:false
+				}]
 			}));
 		}, this.timeout);
 	},
@@ -87,34 +86,14 @@ export default {
 	WebSocketConnect: WebSocketConnect,
 	heartCheck: heartCheck,
 	// Msg:要发送的消息 string
-	WebSocketSendMsg: ((SendArryString = "") => {
-		if (Ws.readyState != 1) {
-			Message.error("与消息中心失去连接,正在重连···");
-			WebSocketConnect();
-			return;
-		}
-		let SendArry = JSON.parse(SendArryString);
-		let tempSendArry = [];
-		SendArry.forEach(x => {
-			tempSendArry.push({
-				SenderId: window.UserID,
-				ReceiverId: x.Reciver,
-				Content: JSON.stringify({
-					msgID: x.InnerCode,
-					isRead: x.IsRead,
-					Type: x.Type,
-					title: x.Title,
-					createTime: x.CreateTime,
-					content: x.SMSContent
-				})
-			});
-		})
-		try {
-			if (tempSendArry.length > 0)
-				tempSendArry.forEach(x => {
-					Ws.send(JSON.stringify(x));
-				})
-		} catch (e) {
+	WebSocketSendMsg: ((MsgObj) => {
+		try 
+		{
+			if (Ws.readyState != 1) 
+				throw new Error();
+			Ws.send(JSON.stringify(MsgObj));
+		} 
+		catch (e) {
 			Message.error("与消息中心失去连接,正在重连···");
 			WebSocketConnect();
 		}
@@ -124,7 +103,7 @@ export default {
 			axios
 				.get('/api/XT/SetXtMsgRead', {
 					params: {
-						UserID: window.UserID,
+						UserID: window.UserInfo.UserID,
 						MsgID: msgIDArry
 					}
 				})
@@ -146,7 +125,7 @@ export default {
 			axios
 				.get('/api/XT/GetXtMsg', {
 					params: {
-						UserID: window.UserID,
+						UserID: window.UserInfo.UserID,
 						lastTime: lastTime
 					}
 				})
